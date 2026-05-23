@@ -353,17 +353,22 @@
   /* Papers */
   .papers-list { list-style: none; }
   .paper-item {
-    padding: 2rem 0;
     border-bottom: 1px solid var(--rule);
+  }
+  .paper-item:first-child { border-top: 1px solid var(--rule); }
+  .paper-row-link {
+    padding: 2rem 0;
     display: grid;
     grid-template-columns: 60px 1fr auto;
     gap: 2rem;
     align-items: baseline;
-    transition: padding-left 0.3s;
-    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+    transition: padding-left 0.3s ease-out;
   }
-  .paper-item:hover { padding-left: 1rem; }
-  .paper-item:first-child { border-top: 1px solid var(--rule); }
+  .paper-row-link:hover { padding-left: 1rem; }
+  .paper-row-link:hover .paper-title { color: var(--accent); }
+  .paper-row-link:hover .paper-meta { color: var(--accent); }
   .paper-num {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85rem;
@@ -374,6 +379,7 @@
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 1.2;
+    transition: color 0.2s;
   }
   .paper-abstract {
     font-style: italic;
@@ -388,6 +394,8 @@
     color: var(--ink-soft);
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    transition: color 0.2s;
+    white-space: nowrap;
   }
 
   /* Closing colophon */
@@ -627,20 +635,24 @@
 
     <ol class="papers-list">
       <li class="paper-item">
-        <div class="paper-num">01</div>
-        <div>
-          <div class="paper-title">The Irrational Ground: π, Informational Incompleteness, and the Structure of Nature</div>
-          <div class="paper-abstract">Establishes the metric gap as theorem; traces its constraining role across geometry, gravity, and equilibrium; connects π to Spinoza's substance and the universal dimensional harmony V/S = r/n.</div>
-        </div>
-        <div class="paper-meta">Foundational</div>
+        <a class="paper-row-link" href="https://ssrn.com/abstract=6548278" target="_blank" rel="noopener noreferrer">
+          <div class="paper-num">01</div>
+          <div>
+            <div class="paper-title">The Irrational Ground: π, Informational Incompleteness, and the Structure of Nature</div>
+            <div class="paper-abstract">Establishes the metric gap as theorem; traces its constraining role across geometry, gravity, and equilibrium; connects π to Spinoza's substance and the universal dimensional harmony V/S = r/n.</div>
+          </div>
+          <div class="paper-meta">Foundational&nbsp;·&nbsp;SSRN&nbsp;↗</div>
+        </a>
       </li>
       <li class="paper-item">
-        <div class="paper-num">02</div>
-        <div>
-          <div class="paper-title">The Polygon and the Circle: Structural Consequences of the Metric Gap</div>
-          <div class="paper-abstract">Traces five consonances between informational incompleteness and known physics — quantum discreteness, measurement, the gravity-quantum parallel, biological order-maintenance, and self-referential awareness. Offered as analogies, not derivations.</div>
-        </div>
-        <div class="paper-meta">Consonances</div>
+        <a class="paper-row-link" href="https://ssrn.com/abstract=6548679" target="_blank" rel="noopener noreferrer">
+          <div class="paper-num">02</div>
+          <div>
+            <div class="paper-title">The Polygon and the Circle: Structural Consequences of the Metric Gap</div>
+            <div class="paper-abstract">Traces five consonances between informational incompleteness and known physics — quantum discreteness, measurement, the gravity-quantum parallel, biological order-maintenance, and self-referential awareness. Offered as analogies, not derivations.</div>
+          </div>
+          <div class="paper-meta">Consonances&nbsp;·&nbsp;SSRN&nbsp;↗</div>
+        </a>
       </li>
     </ol>
   </section>
