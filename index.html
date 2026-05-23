@@ -181,6 +181,55 @@
     font-size: 1.15rem;
   }
 
+  /* Auctor / Nota band — trust signals between hero and Propositio I */
+  .auctor {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 4rem;
+    padding: 3rem 0;
+    margin-bottom: 7rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .auctor-block { display: flex; flex-direction: column; gap: 0.9rem; }
+  .auctor-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .auctor-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .auctor-name {
+    font-family: 'Cormorant', serif;
+    font-size: 1.4rem;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+  .auctor-affil {
+    font-style: italic;
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+  .auctor-body a {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .auctor-body a:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
   /* Interactive panel */
   .interactive {
     display: grid;
@@ -447,6 +496,7 @@
     .paper-item { grid-template-columns: 40px 1fr; }
     .paper-meta { grid-column: 2; margin-top: 0.5rem; }
     .section { margin-bottom: 5rem; }
+    .auctor { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 0; margin-bottom: 4rem; }
   }
 </style>
 </head>
@@ -474,6 +524,27 @@
       </p>
     </div>
     <div class="viz-stage" id="hero-viz"></div>
+  </section>
+
+  <section class="auctor" id="auctor">
+    <div class="auctor-block">
+      <div class="auctor-label">Auctor</div>
+      <div class="auctor-body">
+        <div class="auctor-name">Erez Ashkenazi</div>
+        <div class="auctor-affil">Independent researcher · Upper Galilee, Israel</div>
+        <div><a href="mailto:contact@metricgap.org">contact@metricgap.org</a></div>
+      </div>
+    </div>
+    <div class="auctor-block">
+      <div class="auctor-label">Nota</div>
+      <div class="auctor-body">
+        This site presents two papers archived at SSRN. The framework is structural
+        philosophy of physics with explicit open problems. Mathematical claims are
+        theorems; physical claims are conditional on the hypothesis that physical
+        geometry has finite resolution; philosophical claims are interpretive. Offered
+        for engagement, citation, and critique.
+      </div>
+    </div>
   </section>
 
   <section class="section" id="propositio-i">
@@ -665,8 +736,8 @@
   </div>
 
   <footer>
-    <div>Erez Ashkenazi · Upper Galilee</div>
-    <div>MMXXVI</div>
+    <div>Erez Ashkenazi · Upper Galilee · MMXXVI</div>
+    <div>Updated May 2026</div>
   </footer>
 
 </div>
