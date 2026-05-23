@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>π — The Irrational Ground · metricgap.org</title>
+<meta name="description" content="A framework on the structural function of irrationality. The metric gap ε = |π − p/q| > 0 as constraint on the formally possible.">
+<meta name="author" content="Erez Ashkenazi">
+<link rel="canonical" href="https://metricgap.org/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Metric Gap">
+<meta property="og:title" content="π — The Irrational Ground">
+<meta property="og:description" content="ε = |π − p/q| > 0. A framework on what follows when finite geometry cannot instantiate a transcendental ideal.">
+<meta property="og:url" content="https://metricgap.org/">
+<meta property="og:image" content="https://metricgap.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="π — The Irrational Ground">
+<meta name="twitter:description" content="ε = |π − p/q| > 0. A framework on what follows when finite geometry cannot instantiate a transcendental ideal.">
+<meta name="twitter:image" content="https://metricgap.org/og-image.png">
+
+<!-- Favicon: inline SVG of π in the accent color -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23EFEAE0'/%3E%3Ctext x='32' y='46' font-family='Cormorant,Garamond,serif' font-style='italic' font-weight='400' font-size='48' fill='%238B2E1F' text-anchor='middle'%3E%CF%80%3C/text%3E%3C/svg%3E">
+
+<!-- JSON-LD: scholarly context -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "The Metric Gap",
+  "alternateName": "The Irrational Ground",
+  "url": "https://metricgap.org/",
+  "description": "A framework on the structural function of π. The metric gap ε = |π − p/q| > 0 as constraint on the formally possible.",
+  "author": {
+    "@type": "Person",
+    "name": "Erez Ashkenazi",
+    "affiliation": "Independent Researcher, Upper Galilee, Israel"
+  },
+  "keywords": "π, metric gap, structural ontology, transcendental number, Diophantine approximation, Spinoza, philosophy of physics"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EFEAE0;
+    --bg-soft: #E5DECF;
+    --ink: #1B1916;
+    --ink-soft: #4A4640;
+    --rule: #B3A795;
+    --accent: #8B2E1F;
+    --accent-soft: #C97862;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    background-image:
+      radial-gradient(at 20% 10%, rgba(179, 167, 149, 0.08), transparent 50%),
+      radial-gradient(at 80% 90%, rgba(139, 46, 31, 0.04), transparent 50%);
+  }
+  .paper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 3rem 4rem;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Masthead */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.5rem;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .masthead .mark { color: var(--ink); }
+  .masthead .mark .pi-mini { color: var(--accent); font-family: 'Cormorant', serif; font-style: italic; font-size: 1.1rem; vertical-align: -1px; margin-right: 0.5rem; }
+  .masthead nav { display: flex; gap: 2rem; }
+  .masthead nav a { color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+  .masthead nav a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    min-height: 75vh;
+    margin-bottom: 8rem;
+  }
+  .hero-title {
+    font-family: 'Cormorant', serif;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .hero-title .pi-glyph {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+    display: inline-block;
+    transform: translateY(0.05em);
+  }
+  .hero-sub {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 1.8rem;
+    font-size: 1.15rem;
+    max-width: 32ch;
+  }
+  .hero-lede {
+    font-family: 'Cormorant', serif;
+    font-weight: 400;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    margin-top: 3rem;
+    color: var(--ink);
+    border-left: 1px solid var(--accent);
+    padding-left: 1.5rem;
+    max-width: 42ch;
+  }
+
+  /* Visualization stages */
+  .viz-stage {
+    position: relative;
+    aspect-ratio: 1;
+    width: 100%;
+  }
+  .viz-stage svg { width: 100%; height: 100%; display: block; }
+
+  /* Section */
+  .section { margin-bottom: 8rem; }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.01em;
+  }
+  .section-title em {
+    color: var(--accent);
+    font-style: italic;
+  }
+  .section-deck {
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin-bottom: 3rem;
+    font-size: 1.15rem;
+  }
+
+  /* Interactive panel */
+  .interactive {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    background: var(--bg-soft);
+    padding: 3rem;
+    border: 1px solid var(--rule);
+    position: relative;
+  }
+  .interactive::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 24px; height: 24px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+  }
+  .interactive::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 24px; height: 24px;
+    border-bottom: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+  }
+  .control-row { display: flex; flex-direction: column; margin-bottom: 2rem; }
+  .control-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .control-value {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 0.85rem;
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    outline: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px; height: 14px;
+    background: var(--accent);
+    cursor: grab;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 14px; height: 14px;
+    background: var(--accent);
+    cursor: grab;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .readout {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  .readout-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.7rem 0;
+    border-bottom: 1px dotted var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.92rem;
+  }
+  .readout-row:last-child { border-bottom: none; }
+  .readout-label { color: var(--ink-soft); font-size: 0.82rem; }
+  .readout-value { color: var(--ink); font-weight: 500; }
+  .readout-row.gap { background: rgba(139, 46, 31, 0.06); margin: 0.3rem -0.6rem; padding: 0.7rem 0.6rem; }
+  .readout-row.gap .readout-value { color: var(--accent); font-weight: 600; font-size: 1rem; }
+  .readout-row.gap .readout-label { color: var(--accent); }
+
+  .marginalia {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    border-left: 1px solid var(--accent);
+    padding-left: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* Consequence cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  .card {
+    border-top: 2px solid var(--ink);
+    padding-top: 1.5rem;
+  }
+  .card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .card-title {
+    font-family: 'Cormorant', serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+  .card-body {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Problems */
+  .problems {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .problem {
+    padding: 2rem;
+    border: 1px solid var(--rule);
+    margin-right: -1px;
+    margin-bottom: -1px;
+    background: var(--bg);
+    transition: background 0.3s;
+  }
+  .problem:hover { background: var(--bg-soft); }
+  .problem-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .problem-name {
+    font-family: 'Cormorant', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    line-height: 1.15;
+  }
+  .problem-body {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* Papers */
+  .papers-list { list-style: none; }
+  .paper-item {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 2rem;
+    align-items: baseline;
+    transition: padding-left 0.3s;
+    cursor: pointer;
+  }
+  .paper-item:hover { padding-left: 1rem; }
+  .paper-item:first-child { border-top: 1px solid var(--rule); }
+  .paper-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+  .paper-title {
+    font-family: 'Cormorant', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .paper-abstract {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-top: 0.4rem;
+    max-width: 55ch;
+  }
+  .paper-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Closing colophon */
+  .colophon {
+    margin-top: 6rem;
+    text-align: center;
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 50ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .colophon .ornament {
+    color: var(--accent);
+    font-size: 1.5rem;
+    display: block;
+    margin: 1rem 0;
+    letter-spacing: 0.5em;
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 2rem;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1.2s ease-out, transform 1.2s ease-out; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 880px) {
+    .paper { padding: 2rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; gap: 3rem; min-height: auto; }
+    .interactive { grid-template-columns: 1fr; padding: 2rem; }
+    .cards, .problems { grid-template-columns: 1fr; }
+    .problems { gap: 1rem; }
+    .problem { margin: 0; }
+    .masthead nav { display: none; }
+    .paper-item { grid-template-columns: 40px 1fr; }
+    .paper-meta { grid-column: 2; margin-top: 0.5rem; }
+    .section { margin-bottom: 5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <header class="masthead">
+    <div class="mark"><span class="pi-mini">π</span>The Irrational Ground</div>
+    <nav>
+      <a href="#propositio-i">I · Lacuna</a>
+      <a href="#propositio-ii">II · Consequentiae</a>
+      <a href="#problemata">Problemata</a>
+      <a href="#charta">Charta</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1 class="hero-title"><span class="pi-glyph">π</span><br>The Irrational<br>Ground.</h1>
+      <p class="hero-sub">A framework on the structural function of irrationality.</p>
+      <p class="hero-lede">
+        That π exceeds every rational measure is not a deficiency of arithmetic.
+        It is a structural constraint, not a cause: finite geometry can approach the
+        transcendental ideal but cannot instantiate it.
+      </p>
+    </div>
+    <div class="viz-stage" id="hero-viz"></div>
+  </section>
+
+  <section class="section" id="propositio-i">
+    <span class="section-num">Propositio I</span>
+    <h2 class="section-title"><em>De Lacuna Metrica</em> — The Metric Gap</h2>
+    <p class="section-deck">
+      For every rational p/q, the residual ε&nbsp;=&nbsp;|π&nbsp;−&nbsp;p/q|&nbsp;>&nbsp;0.
+      A finite-resolution circle closes topologically; its internal ratios — being rational —
+      do not match the transcendental ideal. The non-identity is a theorem, not an artifact
+      of measurement.
+    </p>
+
+    <div class="interactive">
+      <div>
+        <div class="control-row">
+          <div class="control-label">
+            <span>Polygon order &nbsp; n</span>
+            <span class="control-value" id="n-display">12</span>
+          </div>
+          <input type="range" id="n-slider" min="3" max="360" value="12">
+        </div>
+
+        <div class="readout">
+          <div class="readout-row">
+            <span class="readout-label">n · sin(π/n)</span>
+            <span class="readout-value" id="poly-val">—</span>
+          </div>
+          <div class="readout-row">
+            <span class="readout-label">π</span>
+            <span class="readout-value">3.14159265358979…</span>
+          </div>
+          <div class="readout-row gap">
+            <span class="readout-label">ε = π − n·sin(π/n)</span>
+            <span class="readout-value" id="gap-val">—</span>
+          </div>
+          <div class="readout-row">
+            <span class="readout-label">nearest rational p/q</span>
+            <span class="readout-value" id="rat-val">—</span>
+          </div>
+        </div>
+
+        <p class="marginalia">
+          Increase n. The polygon perimeter approaches π asymptotically.
+          The gap ε narrows, yet by theorem (Hurwitz; Thue–Siegel–Roth) it cannot close —
+          and cannot shrink faster than universal bounds permit.
+        </p>
+      </div>
+
+      <div class="viz-stage" id="interactive-viz"></div>
+    </div>
+  </section>
+
+  <section class="section" id="propositio-ii">
+    <span class="section-num">Propositio II</span>
+    <h2 class="section-title"><em>Consequentiae Structurales</em></h2>
+    <p class="section-deck">
+      Under the hypothesis that physical geometry has finite resolution, the metric gap
+      constrains the space of formally possible structures. These constraints complement
+      dynamical explanations; they do not replace them.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-num">I</div>
+        <h3 class="card-title">Generic&nbsp;curvature</h3>
+        <p class="card-body">
+          Exact flatness requires exact π. In finite-resolution geometry, exact π is
+          unattainable; perfect flatness becomes a formal ideal, not a physical ground state.
+          The metric gap identifies a structural reason — distinct from the dynamical
+          explanation via mass-energy — for why curvature is generic.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-num">II</div>
+        <h3 class="card-title">Quantum&nbsp;discreteness</h3>
+        <p class="card-body">
+          A polygon cannot have 7.3 sides. If the physical realization of circular symmetry
+          is polygonal, its modes are constrained to integer order. The metric gap is
+          consonant with the discreteness of energy levels — at the level of form, not content.
+          It does not derive the Schrödinger equation.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-num">III</div>
+        <h3 class="card-title">The&nbsp;contemporaneous&nbsp;gap</h3>
+        <p class="card-body">
+          The gap is not between recurrences. It is at every moment, including every
+          recurrence. A finite system can return to any topological neighborhood of its
+          initial state; the metric non-identity persists at every point. Recurrence
+          restores the topological state. It does not close the gap.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="problemata">
+    <span class="section-num">Problemata Aperta</span>
+    <h2 class="section-title">Open problems, named.</h2>
+    <p class="section-deck">
+      The framework is structurally coherent, but five formalizations remain unresolved.
+      Each is named here so the reader can hold the work to account. Their solution would
+      lift the framework from philosophy into physics; their non-solution leaves it as
+      what it is.
+    </p>
+
+    <div class="problems">
+      <div class="problem">
+        <div class="problem-tag">Problem 01</div>
+        <h3 class="problem-name">The Mapping Problem</h3>
+        <p class="problem-body">
+          A mapping is proposed — polygonal order n to frequency, mediated by the period
+          of one cycle. It is dimensionally subtle, non-unique, and not yet derived.
+          The foundational step without which the framework remains metaphorical.
+        </p>
+      </div>
+      <div class="problem">
+        <div class="problem-tag">Problem 02</div>
+        <h3 class="problem-name">The Eigenvalue Problem</h3>
+        <p class="problem-body">
+          Show that the metric gap at order n produces specific energy eigenvalues
+          consistent with the Schrödinger equation — for at least one bound system,
+          the harmonic oscillator or hydrogen atom.
+        </p>
+      </div>
+      <div class="problem">
+        <div class="problem-tag">Problem 03</div>
+        <h3 class="problem-name">The Inner / Outer Problem</h3>
+        <p class="problem-body">
+          Define <em>inner ε</em> (the gap from within, constraining a system's internal modes)
+          and <em>outer ε</em> (the gap from without, constraining ambient geometry). Show that
+          inner produces operator spectra; outer produces metric deviations consistent with
+          the Einstein equation; and a scaling relation between them.
+        </p>
+      </div>
+      <div class="problem">
+        <div class="problem-tag">Problem 04</div>
+        <h3 class="problem-name">The Thermodynamic Problem</h3>
+        <p class="problem-body">
+          Map polygonal order to thermodynamic entropy. Derive at least one quantitative
+          prediction — a critical order threshold for a specific physical transition, or a
+          rate at which informational structure degrades.
+        </p>
+      </div>
+      <div class="problem">
+        <div class="problem-tag">Problem 05</div>
+        <h3 class="problem-name">The Prediction Problem</h3>
+        <p class="problem-body">
+          Produce at least one novel, testable prediction that differs from existing theories.
+          Without this, the framework remains a structural reinterpretation, however coherent,
+          of known results.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="charta">
+    <span class="section-num">Charta — Papers</span>
+    <h2 class="section-title">The framework in two parts.</h2>
+
+    <ol class="papers-list">
+      <li class="paper-item">
+        <div class="paper-num">01</div>
+        <div>
+          <div class="paper-title">The Irrational Ground: π, Informational Incompleteness, and the Structure of Nature</div>
+          <div class="paper-abstract">Establishes the metric gap as theorem; traces its constraining role across geometry, gravity, and equilibrium; connects π to Spinoza's substance and the universal dimensional harmony V/S = r/n.</div>
+        </div>
+        <div class="paper-meta">Foundational</div>
+      </li>
+      <li class="paper-item">
+        <div class="paper-num">02</div>
+        <div>
+          <div class="paper-title">The Polygon and the Circle: Structural Consequences of the Metric Gap</div>
+          <div class="paper-abstract">Traces five consonances between informational incompleteness and known physics — quantum discreteness, measurement, the gravity-quantum parallel, biological order-maintenance, and self-referential awareness. Offered as analogies, not derivations.</div>
+        </div>
+        <div class="paper-meta">Consonances</div>
+      </li>
+    </ol>
+  </section>
+
+  <div class="colophon">
+    Quod erat non demonstrandum sed monstrandum.
+    <span class="ornament">· · ·</span>
+    π does not end. The metric gap does not close.
+    And that formal impossibility may be the structural condition for everything that is.
+  </div>
+
+  <footer>
+    <div>Erez Ashkenazi · Upper Galilee</div>
+    <div>MMXXVI</div>
+  </footer>
+
+</div>
+
+<script>
+  // ============================================================
+  // HERO — slowly cycling polygon, gentle ambient motion
+  // ============================================================
+  function heroViz() {
+    const container = document.getElementById('hero-viz');
+    const size = 500, r = 180, cx = size / 2, cy = size / 2;
+    let n = 6, direction = 1;
+
+    function build(n) {
+      const points = [];
+      for (let i = 0; i < n; i++) {
+        const a = -Math.PI / 2 + (i / n) * 2 * Math.PI;
+        points.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+      }
+      const polyD = points.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' ') + ' Z';
+
+      let segments = '';
+      for (let i = 0; i < n; i++) {
+        const a1 = -Math.PI / 2 + (i / n) * 2 * Math.PI;
+        const a2 = -Math.PI / 2 + ((i + 1) / n) * 2 * Math.PI;
+        const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+        const x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
+        segments += `<path d="M${x1.toFixed(2)},${y1.toFixed(2)} A${r},${r} 0 0,1 ${x2.toFixed(2)},${y2.toFixed(2)} L${x1.toFixed(2)},${y1.toFixed(2)} Z" fill="var(--accent)" fill-opacity="0.18" />`;
+      }
+
+      container.innerHTML = `
+        <svg viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="bgg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="var(--bg)" stop-opacity="0" />
+              <stop offset="100%" stop-color="var(--bg-soft)" stop-opacity="0.6" />
+            </radialGradient>
+          </defs>
+          <circle cx="${cx}" cy="${cy}" r="${r + 30}" fill="url(#bgg)" />
+          <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--ink)" stroke-width="1.2" />
+          ${segments}
+          <path d="${polyD}" fill="none" stroke="var(--ink)" stroke-width="1.2" />
+          ${points.map(p => `<circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="2.5" fill="var(--ink)" />`).join('')}
+          <line x1="${cx}" y1="${cy - r - 12}" x2="${cx}" y2="${cy - r - 4}" stroke="var(--accent)" stroke-width="1" />
+          <text x="${cx + 14}" y="${cy + 8}" font-family="Cormorant" font-style="italic" font-size="28" fill="var(--ink-soft)">n = ${n}</text>
+        </svg>
+      `;
+    }
+
+    build(n);
+    setInterval(() => {
+      n += direction;
+      if (n >= 18) direction = -1;
+      if (n <= 4) direction = 1;
+      build(n);
+    }, 1400);
+  }
+
+  // ============================================================
+  // INTERACTIVE — the centerpiece
+  // ============================================================
+  function interactiveViz() {
+    const slider = document.getElementById('n-slider');
+    const nDisplay = document.getElementById('n-display');
+    const polyVal = document.getElementById('poly-val');
+    const gapVal = document.getElementById('gap-val');
+    const ratVal = document.getElementById('rat-val');
+    const container = document.getElementById('interactive-viz');
+
+    const size = 500, r = 200, cx = size / 2, cy = size / 2;
+
+    // Continued-fraction approximation
+    function bestRational(x, maxDen = 100000) {
+      let h1 = 1, h0 = 0, k1 = 0, k0 = 1, b = x;
+      for (let i = 0; i < 20; i++) {
+        const a = Math.floor(b);
+        const h2 = a * h1 + h0;
+        const k2 = a * k1 + k0;
+        if (k2 > maxDen) break;
+        h0 = h1; h1 = h2; k0 = k1; k1 = k2;
+        const frac = b - a;
+        if (frac < 1e-12) break;
+        b = 1 / frac;
+      }
+      return [h1, k1];
+    }
+
+    function render(n) {
+      const PI = Math.PI;
+      const polyHalf = n * Math.sin(PI / n);
+      const gap = PI - polyHalf;
+
+      nDisplay.textContent = n;
+      polyVal.textContent = polyHalf.toFixed(12);
+      gapVal.textContent = gap < 0.001 ? gap.toExponential(4) : gap.toFixed(8);
+
+      const [p, q] = bestRational(polyHalf);
+      ratVal.textContent = `${p} / ${q}`;
+
+      const points = [];
+      for (let i = 0; i < n; i++) {
+        const a = -Math.PI / 2 + (i / n) * 2 * Math.PI;
+        points.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+      }
+      const polyD = points.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' ') + ' Z';
+
+      let segments = '';
+      for (let i = 0; i < n; i++) {
+        const a1 = -Math.PI / 2 + (i / n) * 2 * Math.PI;
+        const a2 = -Math.PI / 2 + ((i + 1) / n) * 2 * Math.PI;
+        const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+        const x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
+        segments += `<path d="M${x1.toFixed(2)},${y1.toFixed(2)} A${r},${r} 0 0,1 ${x2.toFixed(2)},${y2.toFixed(2)} L${x1.toFixed(2)},${y1.toFixed(2)} Z" fill="var(--accent)" fill-opacity="0.5" />`;
+      }
+
+      const showVertices = n <= 60;
+      const showRays = n <= 32;
+
+      let rays = '';
+      if (showRays) {
+        for (let i = 0; i < n; i++) {
+          const a = -Math.PI / 2 + (i / n) * 2 * Math.PI;
+          const x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
+          rays += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(2)}" y2="${y.toFixed(2)}" stroke="var(--rule)" stroke-width="0.5" stroke-dasharray="2,3" />`;
+        }
+      }
+
+      container.innerHTML = `
+        <svg viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
+          ${rays}
+          <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--ink)" stroke-width="1.5" />
+          ${segments}
+          <path d="${polyD}" fill="none" stroke="var(--ink)" stroke-width="1.5" />
+          ${showVertices ? points.map(p => `<circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="2.5" fill="var(--ink)" />`).join('') : ''}
+          <circle cx="${cx}" cy="${cy}" r="2" fill="var(--accent)" />
+        </svg>
+      `;
+    }
+
+    render(parseInt(slider.value));
+    slider.addEventListener('input', e => render(parseInt(e.target.value)));
+  }
+
+  // ============================================================
+  // Reveal on scroll
+  // ============================================================
+  function reveals() {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.section, .colophon').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  }
+
+  heroViz();
+  interactiveViz();
+  reveals();
+</script>
+</body>
+</html>
